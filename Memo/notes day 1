@@ -1,0 +1,22 @@
+w3school ---> website to help find codes
+comment code --> ctrl(또는 command) + /  (슬래시) 
+정렬 --> ctrl(또는 command) + /  (슬래시) 
+
+[연습할 것들]
+display:flex 사용법      ( → 넘나 유용한 것!)
+ - div 안의 내용물들을 쉽게 정리하기 위한 방법
+ - 아래 세 속성이 항상 따라다닙니다. 바꿔써가며 이해해보기!
+    > flex-direction: column / row
+    > align-items: center / flex-start / flex-end
+    > justify-content: center / space-around / space-between
+
+margin과 padding      ( → 헷갈리지 말기!)
+ - margin은 바깥 여백을, padding은 내 안쪽 여백을
+ - div에 색깔을 넣고, 직접 사용해서 차이를 비교해보세요!
+
+자식선택자 사용하기 ( → 깔끔한 CSS를 위하여!)
+ - .mytitle > h1 : mytitle 클래스 바로 안의 h1을 가리킵니다.
+ - 만약 mytitle 안의 div 안의 h1을 가리킨다면?
+ - .mytitle > div > h1 으로 표현 가능하겠죠!
+
+
