@@ -11,24 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
     <script type="text/javascript">
         function phonenumber(p) {
             var phoneno = /^\(?([0-9]{3})\)?[-]?([0-9]{4})[-]?([0-9]{4})$/;
@@ -60,51 +42,52 @@
                 alert('Color을 선택해주세요')
                 $('#input4').focus()
                 return
+            } else {
+                alert('완료!');
+                for (let i = 0; i < input1.length; i++) {
+                    make_card(orders[i]['name'], orders[i]['email'], orders[i]['phone'], orders[i]['color'])
+                }
+                function make_card(name, email, phone, color) {
+                    let tempt_html = '<tr><td>' + input1 + '</td><td>' + input2 + '</td><td>' + input3 + '</td><td>' + input4 + '</td></tr>';
+                    $('form-box').append(tempt_html);
+                }
             }
-            $.ajax({
-                type: "POST",
-                url: "/contact",
-                data: { name: input1, email: input2, phone: input3, color: input4 },
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        alert('완료!');
-                        window.location.reload();
-                    }
-                }
-            })
         }
-        $(document).ready(function () {
-            $('#form-box').html('');
-            listing();
-        })
-        function listing() {
-            $.ajax({
-                type: "GET",
-                url: "/contact",
-                data: {},
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        let contacts = response['contacts'];
-                        console.log(contacts);
-                        for (let i = 0; i < contacts.length; i++) {
-                            make_card(contacts[i]['name'], contacts[i]['email'], contacts[i]['phone'], contacts[i]['color'])
-                        }
-                    }
-                    else {
-                        alert('기사를 받아오지 못했습니다');
-                    }
-                }
-            })
-        }
-        function make_card(name, email, phone, color) {
-            let tempt_html = <tr>
-                <td>'+name'</td> 
-                <td>'+email'</td> 
-                <td>'+ phone'</td> 
-                <td>'+ color'</td>
-                </tr>;
-                $('form-box').append(tempt_html);
-        }
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/contact",
+            //         data: { name: input1, email: input2, phone: input3, color: input4 },
+            //         success: function (response) {
+            //             if (response['result'] == 'success') {
+            //                 alert('완료!');
+            //                 window.location.reload();
+            //             }
+            //         }
+            //     })
+            // }
+            // $(document).ready(function () {
+            //     $('#form-box').html('');
+            //     listing();
+            // // })
+            // // function listing() {
+            // //     $.ajax({
+            // //         type: "GET",
+            // //         url: "/contact",
+            // //         data: {},
+            //         success: function (response) {
+            //             if (response['result'] == 'success') {
+            //                 let contacts = response['contacts'];
+            //                 console.log(contacts);
+            //                 for (let i = 0; i < contacts.length; i++) {
+            //                     make_card(contacts[i]['name'], contacts[i]['email'], contacts[i]['phone'], contacts[i]['color'])
+            //                 }
+            //             }
+            //             else {
+            //                 alert('기사를 받아오지 못했습니다');
+            //             }
+            //         }
+            //     })
+            // }
 
     </script>
 
@@ -201,7 +184,7 @@
         </form>
     </div>
 
-    <div class="contacts">
+    <div class="orders">
         <table class="table">
             <thead>
                 <tr id='#form-box'>
